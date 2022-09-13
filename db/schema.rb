@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_12_205530) do
+ActiveRecord::Schema.define(version: 2022_09_13_145837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,10 +25,11 @@ ActiveRecord::Schema.define(version: 2022_09_12_205530) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.bigint "order_id", null: false
+    t.boolean "confirmed"
+    t.bigint "client_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_id"], name: "index_carts_on_order_id"
+    t.index ["client_id"], name: "index_carts_on_client_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -38,14 +39,6 @@ ActiveRecord::Schema.define(version: 2022_09_12_205530) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.boolean "confirmed"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "client_id", null: false
-    t.index ["client_id"], name: "index_orders_on_client_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -60,6 +53,5 @@ ActiveRecord::Schema.define(version: 2022_09_12_205530) do
 
   add_foreign_key "cart_products", "carts"
   add_foreign_key "cart_products", "products"
-  add_foreign_key "carts", "orders"
-  add_foreign_key "orders", "clients"
+  add_foreign_key "carts", "clients"
 end
