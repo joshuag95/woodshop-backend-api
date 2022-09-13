@@ -19,8 +19,10 @@ class CartsController < ApplicationController
     def sum_total
        cart = self.object 
             prices = cart.cart_products.map{|p| p.product.price}
-            puts prices.sum
+            render json: prices.sum
        end
+
+       
 end
 
 # get all prices = Client.first.carts.first.cart_products.each{|p| puts p.product.price}
