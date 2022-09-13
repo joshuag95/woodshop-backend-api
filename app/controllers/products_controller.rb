@@ -10,8 +10,10 @@ class ProductsController < ApplicationController
         render json: product
     end
 
-    def add_product_to_cart
-        product
-    end
+    # def add_product_to_cart
+    #     product = self.object
+    #     client = Client.find(session[:client_id])
+    #     CartProduct.create(product: product, client: client ), status: :created
+    # end
         
 end
