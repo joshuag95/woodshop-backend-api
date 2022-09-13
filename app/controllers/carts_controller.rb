@@ -15,14 +15,10 @@ class CartsController < ApplicationController
         cart.update(confirmed: true)
         render json: cart, status: :accepted
     end
+    
+    
+ 
 
-    def sum_total
-       cart = self.object 
-            prices = cart.cart_products.map{|p| p.product.price}
-            render json: prices.sum
-       end
-
-       
 end
 
 # get all prices = Client.first.carts.first.cart_products.each{|p| puts p.product.price}
