@@ -11,12 +11,15 @@ class CartsController < ApplicationController
     end
 
     def confirm_cart
-        cart = self.object
+        cart = Cart.find_by(id: params[:id])
         cart.update(confirmed: true)
         render json: cart, status: :accepted
     end
     
-    
+    def display_sum
+        cart = Cart.find_by(id: params[:id])
+        render json: cart.sum_total, status: :ok
+    end
  
 
 end

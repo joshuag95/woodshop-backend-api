@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   # Leave this here to help deploy your app later!
   
   
-  # get '/carts/:id/sum_total', to: 'carts#sum_total'
+  get '/carts/:id/display_sum', to: 'carts#display_sum'
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

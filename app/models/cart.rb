@@ -3,10 +3,9 @@ class Cart < ApplicationRecord
   has_many :cart_products
   has_many :products, through: :cart_products
 
-  # def sum_total
-  #   cart = self.object 
-  #        prices = cart.cart_products.map{|p| p.product.price}
-  #        render json: prices.sum
-  #   end
+  def sum_total
+         prices = self.cart_products.map{|p| p.product.price}
+         prices.sum
+    end
  
 end
