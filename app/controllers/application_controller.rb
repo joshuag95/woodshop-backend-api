@@ -6,30 +6,12 @@ class ApplicationController < ActionController::API
 
  # before_action :authenticated?, :current_customer, :current_shopping_cart
 
-  # def current_client
-  #   if session[:client_id]
-  #     @client = Client.find(session[:client_id])
-  #   end
-  # end
-
-  # def current_shopping_cart
-  #   if login?
-  #     @cart = @client.orders.where(:confirmed? false) #add current order limit to 1
-  #   end
-  # end
-
-  # def login? 
-  #   !!current_client
-  # end
-
-  # def authenticated?
-  #   redirect_to store_login_path unless login?
-  # end
-
+  def current_client
+      Client.find_by(id: session[:user_id])
+  end
   
 
-
-      private
+private
       def
       render_unprocessable_entity_response(invalid)
               render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
