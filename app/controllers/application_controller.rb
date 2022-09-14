@@ -10,6 +10,11 @@ class ApplicationController < ActionController::API
       Client.find_by(id: session[:user_id])
   end
   
+  def authenicate_user
+    render json: {errors: "Not Authorized"}, status: :unauthorized
+    unless current_client
+  end
+end
 
 private
       def
